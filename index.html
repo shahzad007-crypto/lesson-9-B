@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design by Nature Lesson</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 32px;
+            overflow: hidden;
+        }
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem;
+            box-sizing: border-box;
+            transition: transform 0.5s ease-in-out;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .slide.active {
+            display: flex;
+        }
+        .navigation-buttons {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 2rem;
+            box-sizing: border-box;
+        }
+        .nav-btn {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .nav-btn:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .slide h1, .slide h2 {
+            font-weight: 700;
+        }
+        .slide h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .slide h2 {
+            font-size: 1.5rem;
+        }
+        .image-container {
+            margin-top: 2rem;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-container img {
+            max-height: 40vh;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .content-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 800px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .two-columns {
+            display: flex;
+            gap: 2rem;
+            justify-content: space-around;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        .chart-container {
+            width: 100%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 1rem;
+            border: 2px solid #ddd;
+        }
+        th {
+            background-color: #f3f4f6;
+        }
+        .note {
+            background-color: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 2rem;
+            text-align: left;
+        }
+        .quiz-question-container {
+            margin-bottom: 2rem;
+        }
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .quiz-option-btn {
+            background-color: #e5e7eb;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .quiz-option-btn:hover {
+            background-color: #d1d5db;
+        }
+        .quiz-option-btn.correct {
+            background-color: #d1fae5;
+        }
+        .quiz-option-btn.incorrect {
+            background-color: #fee2e2;
+        }
+        .rationale {
+            font-size: 0.8em;
+            margin-top: 0.5rem;
+            color: #4b5563;
+            display: none;
+        }
+        .quiz-option-btn.incorrect + .rationale {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Slide 0: Cover Slide -->
+    <div id="slide0" class="slide active bg-gradient-to-br from-indigo-300 to-purple-400">
+        <h1 class="text-white text-shadow-lg">Unit -9 B</h1>
+        <h2 class="text-white">UTAS-Ibra_PSC_GFP GE2 _STM</h2>
+        <h2 class="text-white">Reading S1_AY 2025-2026</h2>
+        <h2 class="text-white mt-8">Muhammad Shahzad</h2>
+    </div>
+
+    <!-- Slide 1: Title Slide -->
+    <div id="slide1" class="slide bg-gradient-to-br from-green-300 to-blue-300">
+        <h1 class="text-white text-shadow-lg">Design by Nature</h1>
+        <h2 class="text-white">How can we learn from the world around us?</h2>
+        <div class="image-container">
+            <img src="https://placehold.co/400x300/a8dadc/1d3557?text=Toucan" alt="Toucan">
+            <img src="https://placehold.co/400x300/e63946/1d3557?text=Shark" alt="Shark">
+        </div>
+    </div>
+
+    <!-- Slide 2: Lead-in Activity -->
+    <div id="slide2" class="slide bg-gradient-to-br from-lime-200 to-cyan-200">
+        <h1 class="text-gray-800">Can you find the connection?</h1>
+        <div class="content-box">
+            <p class="text-gray-600 mb-4">Look at the pictures. What do they have in common?</p>
+            <div class="image-container">
+                <img src="/image_533f7e.png" alt="Toucan">
+                <img src="/image_5355c9.png" alt="Car Bumper">
+                <img src="/image_535569.jpg" alt="Shark">
+                <img src="/image_535283.jpg" alt="Swimsuit">
+            </div>
+        </div>
+        <p class="note">**Teacher's Note:** Ask students to work in pairs or small groups. Encourage them to guess and talk about the pictures.</p>
+    </div>
+
+    <!-- Slide 3: Introducing Vocabulary -->
+    <div id="slide3" class="slide bg-gradient-to-br from-yellow-100 to-orange-200">
+        <h1 class="text-gray-800">Words We Will Learn</h1>
+        <div class="content-box">
+            <p>Match the word to the meaning.</p>
+            <div class="two-columns">
+                <ul>
+                    <li>**adjust**</li>
+                    <li>**industry**</li>
+                    <li>**solid**</li>
+                    <li>**involved**</li>
+                    <li>**vary**</li>
+                    <li>**unique**</li>
+                </ul>
+                <ul>
+                    <li>hard; not liquid or gas</li>
+                    <li>to change something slightly</li>
+                    <li>different from all others</li>
+                    <li>to be part of something</li>
+                    <li>all the businesses that make a product or service</li>
+                    <li>to be different or change</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: While Reading: Predicting -->
+    <div id="slide4" class="slide bg-gradient-to-br from-purple-200 to-pink-200">
+        <h1 class="text-gray-800">Let's Predict!</h1>
+        <div class="content-box">
+            <p>We will read about two animals. What do you think the text will say?</p>
+            <p>**Toucan Bills and Car Safety**</p>
+            <p>**Shark Scales and Swimsuits**</p>
+        </div>
+        <p class="note">**Teacher's Note:** This slide gets students thinking before they read.</p>
+    </div>
+
+    <!-- Slide 5: While Reading: Toucan Bills -->
+    <div id="slide5" class="slide bg-gradient-to-br from-lime-200 to-emerald-200">
+        <h1 class="text-gray-800">Toucan Bills</h1>
+        <div class="image-container">
+            <img src="https://placehold.co/400x300/a7f3d0/1d3557?text=Toucan+Bill" alt="Toucan Bill">
+        </div>
+        <div class="content-box mt-8">
+            <p>**Key Idea:** Toucan bills are very light but very strong.</p>
+            <p>**Human Connection:** Scientists used this idea to design safer car bumpers.</p>
+            <p>**Discussion:** How is the toucan bill like a car bumper? How is it different?</p>
+        </div>
+    </div>
+
+    <!-- Slide 6: While Reading: Shark Scales -->
+    <div id="slide6" class="slide bg-gradient-to-br from-blue-300 to-indigo-300">
+        <h1 class="text-white">Shark Scales</h1>
+        <div class="image-container">
+            <img src="https://placehold.co/400x300/93c5fd/1d3557?text=Shark+Skin" alt="Shark Skin">
+        </div>
+        <div class="content-box mt-8">
+            <p>**Key Idea:** Shark scales make them fast in the water.</p>
+            <p>**Human Connection:** Engineers used this idea to design faster swimsuits and aircraft.</p>
+            <p>**Discussion:** How do shark scales help them move? How does this idea help humans?</p>
+        </div>
+    </div>
+
+    <!-- Slide 7: Post-Reading: Main Idea -->
+    <div id="slide7" class="slide bg-white">
+        <h1 class="text-gray-800">Finding the Main Idea</h1>
+        <div class="content-box chart-container">
+            <p>Work with a partner to complete this chart.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Purpose (Why do animals have this?)</th>
+                        <th>Products/Technologies (How do humans use this?)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>**Toucan Bills:** (Very light, but strong)</td>
+                        <td>**Toucan Bills:** (Safer car bumpers)</td>
+                    </tr>
+                    <tr>
+                        <td>**Shark Scales:** (Reduce drag, swim faster)</td>
+                        <td>**Shark Scales:** (Faster swimsuits, aircraft)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Slide 8: Post-Reading: Paraphrasing & Synonyms -->
+    <div id="slide8" class="slide bg-gradient-to-br from-amber-100 to-yellow-200">
+        <h1 class="text-gray-800">Let's Rewrite It!</h1>
+        <div class="content-box">
+            <p>Look at the underlined words. Can you find a synonym? Rewrite the sentence using your own words.</p>
+            <p>- "The design of the toucan bill has a great **solid** strength."</p>
+            <p>- "The bird's feathers are **stiff** on one side."</p>
+        </div>
+    </div>
+
+    <!-- Slide 9: Vocabulary Quiz - Question 1 -->
+    <div id="slide9" class="slide bg-gradient-to-br from-purple-200 to-indigo-300">
+        <h1 class="text-white">Vocabulary Quiz</h1>
+        <div class="content-box mt-8">
+            <div class="quiz-question-container">
+                <p>1. What does the word **'unique'** mean?</p>
+                <div class="quiz-options">
+                    <button class="quiz-option-btn" data-correct="false">Easy to find</button>
+                    <button class="quiz-option-btn" data-correct="true">Different from all others</button>
+                    <button class="quiz-option-btn" data-correct="false">Very strong</button>
+                    <button class="quiz-option-btn" data-correct="false">Hard and not liquid</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Vocabulary Quiz - Question 2 -->
+    <div id="slide10" class="slide bg-gradient-to-br from-purple-200 to-indigo-300">
+        <h1 class="text-white">Vocabulary Quiz</h1>
+        <div class="content-box mt-8">
+            <div class="quiz-question-container">
+                <p>2. If you want to change something slightly, what do you do to it?</p>
+                <div class="quiz-options">
+                    <button class="quiz-option-btn" data-correct="false">destroy</button>
+                    <button class="quiz-option-btn" data-correct="true">adjust</button>
+                    <button class="quiz-option-btn" data-correct="false">ignore</button>
+                    <button class="quiz-option-btn" data-correct="false">copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Vocabulary Quiz - Question 3 -->
+    <div id="slide11" class="slide bg-gradient-to-br from-purple-200 to-indigo-300">
+        <h1 class="text-white">Vocabulary Quiz</h1>
+        <div class="content-box mt-8">
+            <div class="quiz-question-container">
+                <p>3. Which word describes a substance that is hard and is not a liquid or gas?</p>
+                <div class="quiz-options">
+                    <button class="quiz-option-btn" data-correct="false">involved</button>
+                    <button class="quiz-option-btn" data-correct="false">industry</button>
+                    <button class="quiz-option-btn" data-correct="true">solid</button>
+                    <button class="quiz-option-btn" data-correct="false">vary</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Vocabulary Quiz - Question 4 -->
+    <div id="slide12" class="slide bg-gradient-to-br from-purple-200 to-indigo-300">
+        <h1 class="text-white">Vocabulary Quiz</h1>
+        <div class="content-box mt-8">
+            <div class="quiz-question-container">
+                <p>4. A person who works with a team on a project is _____ in the project.</p>
+                <div class="quiz-options">
+                    <button class="quiz-option-btn" data-correct="false">unique</button>
+                    <button class="quiz-option-btn" data-correct="false">stiff</button>
+                    <button class="quiz-option-btn" data-correct="true">involved</button>
+                    <button class="quiz-option-btn" data-correct="false">vary</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Vocabulary Quiz - Question 5 -->
+    <div id="slide13" class="slide bg-gradient-to-br from-purple-200 to-indigo-300">
+        <h1 class="text-white">Vocabulary Quiz</h1>
+        <div class="content-box mt-8">
+            <div class="quiz-question-container">
+                <p>5. The temperature of the desert can _____ greatly from day to night.</p>
+                <div class="quiz-options">
+                    <button class="quiz-option-btn" data-correct="false">adjust</button>
+                    <button class="quiz-option-btn" data-correct="false">solid</button>
+                    <button class="quiz-option-btn" data-correct="true">vary</button>
+                    <button class="quiz-option-btn" data-correct="false">involve</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 14: Vocabulary Quiz - Question 6 -->
+    <div id="slide14" class="slide bg-gradient-to-br from-green-300 to-lime-400">
+        <h1 class="text-white">Vocabulary Quiz</h1>
+        <div class="content-box mt-8">
+            <div class="quiz-question-container">
+                <p>6. The design of the toucan bill and shark scales are examples of **biomimetics**. What does this term mean?</p>
+                <div class="quiz-options">
+                    <button class="quiz-option-btn" data-correct="false">The study of birds and fish</button>
+                    <button class="quiz-option-btn" data-correct="false">The science of creating new animals</button>
+                    <button class="quiz-option-btn" data-correct="true">The study of how humans can learn from nature's designs</button>
+                    <button class="quiz-option-btn" data-correct="false">The study of how animals are designed by humans</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 15: Vocabulary Quiz - Question 7 -->
+    <div id="slide15" class="slide bg-gradient-to-br from-green-300 to-lime-400">
+        <h1 class="text-white">Vocabulary Quiz</h1>
+        <div class="content-box mt-8">
+            <div class="quiz-question-container">
+                <p>7. A forest with many trees and plants that grow close together is called a **_____** forest.</p>
+                <div class="quiz-options">
+                    <button class="quiz-option-btn" data-correct="false">rare</button>
+                    <button class="quiz-option-btn" data-correct="false">stiff</button>
+                    <button class="quiz-option-btn" data-correct="true">dense</button>
+                    <button class="quiz-option-btn" data-correct="false">unique</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 16: Vocabulary Quiz - Question 8 -->
+    <div id="slide16" class="slide bg-gradient-to-br from-green-300 to-lime-400">
+        <h1 class="text-white">Vocabulary Quiz</h1>
+        <div class="content-box mt-8">
+            <div class="quiz-question-container">
+                <p>8. The word **'environment'** means...</p>
+                <div class="quiz-options">
+                    <button class="quiz-option-btn" data-correct="false">A special tool</button>
+                    <button class="quiz-option-btn" data-correct="false">A type of plant or tree</button>
+                    <button class="quiz-option-btn" data-correct="true">The natural world where people, animals, and plants live</button>
+                    <button class="quiz-option-btn" data-correct="false">A type of factory</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 17: Vocabulary Quiz - Question 9 -->
+    <div id="slide17" class="slide bg-gradient-to-br from-green-300 to-lime-400">
+        <h1 class="text-white">Vocabulary Quiz</h1>
+        <div class="content-box mt-8">
+            <div class="quiz-question-container">
+                <p>9. What is the name for all the businesses that make a product or service?</p>
+                <div class="quiz-options">
+                    <button class="quiz-option-btn" data-correct="false">biomimetics</button>
+                    <button class="quiz-option-btn" data-correct="false">a unique group</button>
+                    <button class="quiz-option-btn" data-correct="true">an industry</button>
+                    <button class="quiz-option-btn" data-correct="false">a solid group</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 18: Vocabulary Quiz - Question 10 -->
+    <div id="slide18" class="slide bg-gradient-to-br from-green-300 to-lime-400">
+        <h1 class="text-white">Vocabulary Quiz</h1>
+        <div class="content-box mt-8">
+            <div class="quiz-question-container">
+                <p>10. What is a synonym for **'stiff'**?</p>
+                <div class="quiz-options">
+                    <button class="quiz-option-btn" data-correct="false">Soft</button>
+                    <button class="quiz-option-btn" data-correct="true">Hard</button>
+                    <button class="quiz-option-btn" data-correct="false">Light</button>
+                    <button class="quiz-option-btn" data-correct="false">Flexible</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 19: Final Thoughts -->
+    <div id="slide19" class="slide bg-gradient-to-br from-blue-100 to-indigo-100">
+        <h1 class="text-gray-800">What Did You Learn?</h1>
+        <div class="content-box">
+            <p>- What is **biomimetics**?</p>
+            <p>- Can you think of any other animals that have a **unique** design?</p>
+            <p>- How can we use nature to solve more problems?</p>
+        </div>
+        <p class="note">**Teacher's Note:** This slide can be used for a class discussion to wrap up the lesson and check for understanding.</p>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="navigation-buttons">
+        <button id="prevBtn" class="nav-btn">Previous</button>
+        <button id="nextBtn" class="nav-btn">Next</button>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[n].classList.add('active');
+            currentSlide = n;
+            updateButtons();
+        }
+
+        function updateButtons() {
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === slides.length - 1;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < slides.length - 1) {
+                showSlide(currentSlide + 1);
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        });
+
+        document.querySelectorAll('.quiz-options').forEach(optionsContainer => {
+            optionsContainer.addEventListener('click', (e) => {
+                const selectedButton = e.target;
+                if (selectedButton.tagName === 'BUTTON') {
+                    const isCorrect = selectedButton.dataset.correct === 'true';
+                    selectedButton.classList.add(isCorrect ? 'correct' : 'incorrect');
+                    
+                    // Disable all buttons for this question
+                    optionsContainer.querySelectorAll('button').forEach(btn => {
+                        btn.disabled = true;
+                    });
+                }
+            });
+        });
+
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
